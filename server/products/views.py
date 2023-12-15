@@ -6,7 +6,7 @@ from .serializers import Productserializer
 
 
 """dispay/export contents of the product models"""
-class ProductViewset(viewsets.ModelViewSet):
+class ProductView(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = Productserializer
 

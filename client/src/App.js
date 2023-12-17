@@ -10,8 +10,8 @@ function App() {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route exact path='/' component={ShowProducts} />
-          <Route exact path='/add' Component={AddProduct} />
+          <Route exact path='/' element={<ShowProducts />} />
+          <Route exact path='/add' element={<AddProduct />} />
           {/* <Route exact path='/' Component={ShowProducts} /> */}
         </Routes>
       </BrowserRouter>

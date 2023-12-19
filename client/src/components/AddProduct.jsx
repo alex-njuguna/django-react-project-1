@@ -1,5 +1,7 @@
+import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const AddProduct = () => {
 
@@ -9,6 +11,29 @@ const AddProduct = () => {
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
 
+  const navigate = useNavigate()
+
+  const AddProductInfo = async () => {
+    let formField = new FormData()
+
+    formField.append('name', name)
+    formField.append('price', price)
+    formField.append('category', category)
+    formField.append('description', description)
+    if (image !== null) {
+      formField.append('image', image)
+    }
+
+    await axios({
+      method: 'post',
+      url: 'http://localhost:8000/api/',
+      data: formField
+    }).then((response) => {
+      console.log(response.data)
+      navigate('/')
+    })
+
+  }
 
   return (
     <div className='container-sm mt-5'>
@@ -16,9 +41,9 @@ const AddProduct = () => {
   
       <div className="card p-4">
   
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <img src={image} alt="Product Preview" className="img-fluid" />
-        </div>
+        </div> */}
   
         <div className="mb-3">
           <label htmlFor="image" className="form-label">Product Image</label>
@@ -29,6 +54,7 @@ const AddProduct = () => {
             accept="image/*" 
             className="form-control" 
             onChange={(e) => setImage(e.target.files[0])} 
+            required
           />
         </div>
   
@@ -37,12 +63,12 @@ const AddProduct = () => {
           <input 
             type="text" 
             id="name" 
-            required 
             placeholder="Product Name" 
             name="name" 
             value={name} 
             onChange={(e) => setName(e.target.value)} 
             className="form-control" 
+            required
           />
         </div>
   
@@ -51,12 +77,12 @@ const AddProduct = () => {
           <input 
             type="text" 
             id="price" 
-            required 
             placeholder="Pricing" 
             name="price" 
             value={price} 
             onChange={(e) => setPrice(e.target.value)} 
             className="form-control" 
+            required
           />
         </div>
   
@@ -65,7 +91,6 @@ const AddProduct = () => {
           <input 
             type="text" 
             id="category" 
-            required 
             placeholder="Category" 
             name="category" 
             value={category} 
@@ -78,22 +103,22 @@ const AddProduct = () => {
           <label htmlFor="description" className="form-label">Description</label>
           <textarea 
             id="description" 
-            required 
             placeholder="Description" 
             name="description" 
             value={description} 
             onChange={(e) => setDescription(e.target.value)} 
             className="form-control" 
+            required
           />
         </div>
   
         <div className="text-center">
-          <button className="btn btn-success">Add</button>
+          <button className="btn btn-success" onClick={AddProductInfo}>Add</button>
         </div>
   
       </div>
     </div>
-  );
+  );  
   
 }
 

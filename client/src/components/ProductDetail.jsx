@@ -27,7 +27,7 @@ const ProductDetail = () => {
                     <img className='w-50' src={product.image} alt={product.name} />
                 </div>
                 <div className="card-body m-4">
-                   <table className='table table-warning table-responsive table-stripped border'>
+                   <table className='table table-warning table-responsive table-striped table-hover table-bordered'>
                     <tbody>
                         <tr>
                             <td className='text-danger'>Price</td>

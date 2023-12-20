@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const ProductDetail = () => {
     const [product, setProduct] = useState('')
@@ -41,6 +42,10 @@ const ProductDetail = () => {
                         </tr>
                     </tbody>
                    </table>
+                </div>
+                <div className="card-footer">
+                    <Link className='btn btn-primary m-2' to={`/${product.id}/update`}>Update</Link>
+                    <Link className='btn btn-danger m-2' to={`/${product.id}/delete`}>Delete</Link>
                 </div>
             </div>
         

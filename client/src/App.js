@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import ShowProducts from './components/ShowProducts'
 import AddProduct from './components/AddProduct'
+import ProductDetail from './components/ProductDetail';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<ShowProducts />} />
           <Route exact path='/add' element={<AddProduct />} />
+          <Route exact path='/:id/' element={<ProductDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

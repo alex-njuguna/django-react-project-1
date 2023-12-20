@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const ShowProducts = () => {
 
@@ -32,7 +33,7 @@ const ShowProducts = () => {
                         <span className='text-info'> - {product.description}</span>
                     </div>
                     <div className="card-foter">
-                        <button className='btn btn-primary'>View</button>
+                        <Link className='btn btn-primary' to={`/${product.id}`}>View</Link>
                     </div>
                 </div>
             </div>

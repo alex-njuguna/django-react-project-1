@@ -3,11 +3,14 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 const ProductDetail = () => {
     const [product, setProduct] = useState('')
 
     const { id } = useParams()
+
+    const navigate = useNavigate()
 
     const getProduct = async () => {
         const { data } = await axios.get(`http://localhost:8000/api/${id}/`)
@@ -18,6 +21,13 @@ const ProductDetail = () => {
     useEffect(() => {
         getProduct()
     }, [])
+
+
+    const deleteProduct = async (id) => {
+        await axios.delete(`http://localhost:8000/api/${id}/`)
+        navigate('/')
+
+    }
 
   return (
     <div className='container text-center text-capitalize m-3'>
@@ -45,7 +55,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="card-footer border-0">
                     <Link className='btn btn-primary m-2' to={`/${product.id}/update`}>Update</Link>
-                    <Link className='btn btn-danger m-2' to={`/${product.id}/delete`}>Delete</Link>
+                    <Link className='btn btn-danger m-2' onClick={() => deleteProduct(product.id)}>Delete</Link>
                 </div>
             </div>
         

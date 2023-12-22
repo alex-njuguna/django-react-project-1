@@ -30,7 +30,6 @@ const ShowProducts = () => {
                         <span className='text-success fs-6'><em> ({(product.category) ? product.category : 'N/A'})</em></span> &nbsp;
                         <br />
                         <span className='text-danger'>@ {product.price}</span> &nbsp;
-                        <span className='text-info'> - {product.description}</span>
                     </div>
                     <div className="card-foter">
                         <Link className='btn btn-primary' to={`/${product.id}`}>View</Link>

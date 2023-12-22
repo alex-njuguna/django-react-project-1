@@ -10,7 +10,7 @@ const ProductDetail = () => {
     const { id } = useParams()
 
     const getProduct = async () => {
-        const { data } = await axios.get(`http://localhost:8000/api/${id}`)
+        const { data } = await axios.get(`http://localhost:8000/api/${id}/`)
         console.log(data)
         setProduct(data)
     }

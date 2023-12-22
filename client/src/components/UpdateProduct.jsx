@@ -12,16 +12,18 @@ const UpdateProduct = () => {
   	const [description, setDescription] = useState('')
 
   	const { id } = useParams()
+  	const navigate = useNavigate()
 
   	const loadProduct = async () => {
-  		const { data } = await axios.get(`http://localhost:8000/api/${id}`)
+  		const { data } = await axios.get(`http://localhost:8000/api/${id}/`)
   		console.log(data)
 
-  		setImage(data.image)
   		setName(data.name)
   		setPrice(data.price)
   		setCategory(data.category)
-  		setDescription(data.category)
+  		setDescription(data.description)
+  		setImage(data.image)
+
   	}
 
   	useEffect(() => {
@@ -29,7 +31,25 @@ const UpdateProduct = () => {
   	}, [])
 
 
-  	function UpdateProductInfo(){
+  	const UpdateProductInfo = async () => {
+  		let formField = new FormData()
+
+  		formField.append('name', name)
+  		formField.append('price', price)
+  		formField.append('category', category)
+  		formField.append('description', description)
+  		if (image !== null) {
+  			formField.append('image', image)
+  		}
+
+  		await axios({
+  			method: 'PUT',
+  			url: `http://localhost:8000/api/${id}/`,
+  			data: formField
+  		}).then((response) => {
+  			console.log(response.data)
+  			navigate(`/${id}/`)
+  		})
 
   	}
 
@@ -40,7 +60,7 @@ const UpdateProduct = () => {
       <div className="card p-4">
   
          <div className="mb-3">
-          <img src={image} alt="Product Preview" className="img-fluid" />
+          <img src={image} alt="Product Preview" className="img-fluid" width="300px" />
         </div> 
   
         <div className="mb-3">
@@ -49,8 +69,7 @@ const UpdateProduct = () => {
             type="file" 
             id="image" 
             name="image" 
-            accept="image/*" 
-            className="form-control" 
+            className="form-control"
             onChange={(e) => setImage(e.target.files[0])} 
             required
           />

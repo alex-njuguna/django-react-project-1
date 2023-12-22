@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 const UpdateProduct = () => {
 
@@ -14,7 +14,7 @@ const UpdateProduct = () => {
   	const { id } = useParams()
 
   	const loadProduct = async () => {
-  		const { data } = axios.get(`http://localhost:8000/api/${id}`)
+  		const { data } = await axios.get(`http://localhost:8000/api/${id}`)
   		console.log(data)
 
   		setImage(data.image)

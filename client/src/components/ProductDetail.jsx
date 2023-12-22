@@ -43,7 +43,7 @@ const ProductDetail = () => {
                     </tbody>
                    </table>
                 </div>
-                <div className="card-footer">
+                <div className="card-footer border-0">
                     <Link className='btn btn-primary m-2' to={`/${product.id}/update`}>Update</Link>
                     <Link className='btn btn-danger m-2' to={`/${product.id}/delete`}>Delete</Link>
                 </div>
